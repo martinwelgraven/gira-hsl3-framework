@@ -1,4 +1,4 @@
-# girahs-hsl3
+# gira-hsl3-framework
 
 A HSL3 logic toolset to design, build, test and release logic blocks from a JSON configuration file.
 
