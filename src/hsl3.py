@@ -83,19 +83,15 @@ class Hsl3Framework:
          - If the method is not called from the thread of the context, an exception of type Hsl3ContextError is triggered.
          - If, for the value parameter, None or a "string" type value is transferred, an exception  of the ValueError type is triggered.        
         """
-        isfound = False
-        if self.config != None:
-            for cfg_input in self.config.outputs:
-                if cfg_input.identifier == index_or_key:
-                    isfound = True
-                    break
-        
-        if isfound == False: raise ValueError(f"Output index or key '{index_or_key}' does not exist.") 
+       
+        if not index_or_key in self.outputs.keys():
+            raise ValueError(f"Output index or key '{index_or_key}' does not exist.") 
         
         self.outputs.get(index_or_key).value = value
 
         if isinstance(value, str):
-            raise ValueError(f"String values are not allowed. Encode to bytes before setting the output. Key: {index_or_key}, Value: {value}")
+            print(f"ERROR: String values are not allowed. Encode to bytes before setting the output. Key: {index_or_key}, Value: {value}")
+            exit()
         elif isinstance(value, (bytes, bytearray)):
             display = value.decode("ascii")
         else:

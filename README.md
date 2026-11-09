@@ -17,7 +17,7 @@ This software is an independently developed SDK. It is not affiliated with, endo
 Download the src folder from this module and add it to your logic node repository in a folder named hsl3. Import the hsl3 framework so you can write simple tests.
 ```
 project        # foldernaam must be in the format of '00000-my-project'
-├── docs/      # documentation on the logic node
+├── docs/      # extra documentation on the logic node
 ├── hsl3/      # HSL3 Framework
 ├── src/       # Logic Node files
 |    ├── config_my_logic_node.json
@@ -285,7 +285,7 @@ csv, configparser, json, plistlib, netrc, xdrlib
 hashlib, hmac, secrets
 
 **Generic OS Services**
-time, argparse, getopt, logging, getpass, curses, platform, errno, ctypes, signal, resource
+time, argparse, getopt, logging, getpass, curses, platform, errno, ctypes, signal, resource, subprocess
 
 **Networking & Internet Protocols**
 socket, ssl, select, asyncio, asyncore, asynchat

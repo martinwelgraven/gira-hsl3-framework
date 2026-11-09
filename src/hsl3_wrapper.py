@@ -32,22 +32,20 @@ class Hsl3WrapperModule():
             Function to mock the call from the HomeServer object to the logic node.
             Sets the input value in the context of the node and triggers the on_calc method of the node.
         """
-        self.node.fw.hs_on_input(key, value)
+        self.node.fw.hs_on_input(key, value.encode('iso-8859-15') if isinstance(value, str) else value)
         self.node.on_calc(self.node.fw.inputs) 
 
-    
+
+
     def _open_config(self, source_file) -> ConfigModule:
         """ Helper function to open the config file and parse it into a ConfigModule object. """
-        with open(source_file, 'r', encoding='utf-8') as qf:
-            content = qf.read()
-            _, file_extension = os.path.splitext(source_file)
-            file_extension = file_extension.lower()
 
-            if file_extension == '.json':
-                return  JSONfileParser().parse_json(content)
-            else:
-                raise ValueError(f"Unsupported file extension: {file_extension}")
-
+        config = JSONfileParser().parse_json(source_file)
+        if config == None:
+            raise ValueError(f"Could not parse JSON configuration from file: {source_file}")
+        
+        return config
+        
     
     def _set_slots(self):
         """ Loads the slots defined in the config file into the HSL3 framework. """

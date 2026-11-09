@@ -31,5 +31,5 @@ class Hsl3Slot:
 
     @value.setter
     def value(self, new_value):
-        self._changed = (new_value != self._value)
+        self._changed = True
         self._value = new_value
